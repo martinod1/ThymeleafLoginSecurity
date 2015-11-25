@@ -1,0 +1,33 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" >
+		
+	 <head>
+    <title>Detailed Object ID</title>
+  </head>
+  
+  <body>
+  
+  	
+  	<p> 
+        <div th:text="${object.id}"/>
+         
+         <div th:text="${object.title}"/>
+         <div th:text="${object.date}"/>
+         <div th:text="${object.creditline}"/>
+         <div th:text="${object.description}"/>
+         <div th:text="${object.gallery_text}"/>
+         <div th:text="${object.medium}"/>
+         
+
+         
+         
+         </p>
+  </body>
+		
+
+
+
+
+</html>
