@@ -55,6 +55,8 @@ public class ObjectRepositoryImpl implements ObjectRepository {
         Transaction tx = session.beginTransaction();
 
 		List<ChObject> objects = session.createCriteria(ChObject.class).list();;
+		//session.getTransaction().commit();
+		//session.close();
 	
 	return objects;
 	}
@@ -67,6 +69,8 @@ public class ObjectRepositoryImpl implements ObjectRepository {
         Transaction tx = session.beginTransaction();
 
 		ChObject object= (ChObject) session.get(ChObject.class, id);
+		//session.getTransaction().commit();
+		//session.close();
 	
 	return object;
 	}

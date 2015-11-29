@@ -5,13 +5,16 @@
 	    xmlns:context="http://www.springframework.org/schema/context"
     xmlns:p="http://www.springframework.org/schema/p"
     xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:mongo="http://www.springframework.org/schema/data/mongo"
     
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	 http://www.springframework.org/schema/beans/spring-beans.xsd
 	 http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-3.0.xsd
-http://www.springframework.org/schema/tx 
-                 http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/data/mongo 
+	http://www.springframework.org/schema/data/mongo/spring-mongo-1.5.xsd
 ">
 
 
@@ -30,11 +33,7 @@ http://www.springframework.org/schema/tx
 			p:defaultSerializer-ref="stringRedisSerializer"
    			 /> -->
 
-<!--    		 <context:component-scan base-package="ie.cit" />
- -->   			 
-   			
-<!--    			 <tx:annotation-driven transaction-manager="txManager"/>
- -->   			 
+  			 
    	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
         destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -64,19 +63,20 @@ http://www.springframework.org/schema/tx
         </property>
         </bean>
         
+         
+<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+    <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+</bean>
+
+<mongo:mongo host="localhost" port="27017" id="mongo" />
+<mongo:db-factory dbname="adf" mongo-ref="mongo" id="mongoDbFactory" />
+        
         <bean id="ObjectRepository" class="ie.cit.repository.ObjectRepositoryImpl">
 		<property name="sessionFactory" ref="SessionFactory" />
 		</bean>
-		
 	
-		<!--
-	<bean id="ChObjectService" class="ie.cit.service.ObjectServiceImpl">
-		<property name="sessionFactory" ref="SessionFactory" />
-	</bean>
-	
+	<bean id="UserService" class="ie.cit.service.UserServiceImpl" />
 			
-	<bean id="userRepo" class="repository.UserRedisRepositoryImpl">
-		<property name="redisTemplate" ref="redisTemplate" />	
-	</bean> -->
+	
 
 </beans>
