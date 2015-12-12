@@ -76,6 +76,8 @@
 		</bean>
 	
 	<bean id="UserService" class="ie.cit.service.UserServiceImpl" />
+	
+	<bean id="LikeService" class="ie.cit.service.LikeServiceImpl" />
 			
 	
 

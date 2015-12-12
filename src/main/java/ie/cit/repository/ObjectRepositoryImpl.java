@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import ie.cit.domain.ChObject;
+import ie.cit.domain.Image;
 
 @Repository
 @Qualifier("ObjectRepository")
@@ -73,6 +74,14 @@ public class ObjectRepositoryImpl implements ObjectRepository {
 		//session.close();
 	
 	return object;
+	}
+
+	@Override
+	public List<Image> findAllImagesByObjectID(String object_id) {
+		
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Image> images = (List<Image>) session.get(Image.class, object_id);
+		return images;
 	}
 
 

@@ -76,22 +76,8 @@ public class MainController {
 		model.addAttribute("objects", obj.findAll());
 		return("gallery");
 	}
-	@RequestMapping(value = "/object/{id}", method=RequestMethod.GET)
-	public String findByID(Model model, @PathVariable Long id)
-	{
-		//id=(long) 68250611;
-		model.addAttribute("object", obj.findById(id));
-	//	System.out.println("---");
-	//	System.out.println(obj.findById(id).toString());
-		return("object");
-	}
+
 	
-	@RequestMapping(value="/registration", method=RequestMethod.GET)
-	public String findByUsername(Model model)
-	{
-		model.addAttribute("user", userService.findByUsername("user"));
-		return("registration");
-	}
 	
 	/*@RequestMapping(value="/object", method=RequestMethod.GET)
 	public String object() {

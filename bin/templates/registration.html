@@ -1,25 +1,82 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>Cooper-Hewitt Registration </title>
-    </head>
-    <body>
-        <div th:if="${param.error}">
-            Invalid username and password.
-        </div>
-        <div th:if="${param.logout}">
-            You have been logged out.
-        </div>
-        <form th:action="@{/register}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Register"/></div>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+	<style>
+	#header {
+		background-color:#005580;
+		text-shadow: 1px 1px #ffffcc; 
+		color:white;
+		text-align:center;
+		padding:5px;
+	}
+	
+	#body {
+		padding:10px;		 
+	}
+	
+	#footer {
+		background-color:#005580;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		 
+	}
+	
+	.center_cell_content{
+		text-align: center;
+	}
+	
+	</style>
+	
+	<title>Cooper Hewitt Museum</title>
+	
+</head>
+   <body>
+
+	<table width="100%" border="0">
+		<tr>
+			<td>
+				<div id="header">
+					<center>
+						<h1>Registration</h1>
+					</center>
+				</div>
+			</td>
+		</tr>
+		<tr align="center">
+			<td>
+				<div id="body">
+					<div th:if="${param.error}">
+						Invalid username and password.
+					</div>
+					<div th:if="${param.logout}">
+						You have been logged out.
+					</div>
+					
+					
+					 <form th:action="@{/registration}" th:object="${user}" method="post">
+            <p><label> User Name : <input type="text" name="username" th:field="*{username}"/> </label></p>
+            <p><label> Password: <input type="password" name="password" th:field="*{password}"/> </label></p>
+            <div><input type="submit" value="Submit"/> <input type="reset" value="Reset" /></div>
         </form>
-        
-        	<p> 
-        <div th:text="${user.username}"/>
-        
-        </p>
-    </body>
+
+        	 <p th:text="'username: ' + ${user.username}" />
+    	<p th:text="'password: ' + ${user.password}" />
+    	
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="footer">
+					<center>
+						Group Project 
+					</center>
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+
+</body>
 </html>

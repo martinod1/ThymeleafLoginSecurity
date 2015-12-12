@@ -1,6 +1,7 @@
 package ie.cit;
 
 import java.net.UnknownHostException;
+import java.util.List;
 
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
@@ -16,6 +17,7 @@ import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
 
+import ie.cit.domain.Image;
 import ie.cit.domain.UserDet;
 import ie.cit.repository.ObjectRepository;
 import ie.cit.repository.UserRepository;
@@ -63,14 +65,17 @@ public class ThymeleafLoginSecurityApplication implements CommandLineRunner {
     public void addUser() {
     	System.out.println("in add user");
     	
-    	UserDet usr =new UserDet();
+    	//List<Image> images = obj.findAllImagesByObjectID("68240611");
+    	//System.out.println(images.toString());
+    	
+    /*	UserDet usr =new UserDet();
     	usr.setId("rthybgvfr");
     	usr.setPassword("passw");;
     	usr.setRole("USER");
     	usr.setUsername("myusername");
     	simp.insert(usr);
     	
-    	UserDet u = simp.findByUsername("martin");
+    	UserDet u = simp.findByUsername("martin");*/
     	/*UserDet us = new UserDet();
     	UserDet u1 = simp.findByUsername("user");
     	if(u1!=null)
@@ -84,7 +89,7 @@ public class ThymeleafLoginSecurityApplication implements CommandLineRunner {
     	}
     	UserDet u = user.findByUsername("user");
     	*/
-    	if(u!=null)
+    /*	if(u!=null)
     	{
         	System.out.println(u.toString());
 
@@ -92,12 +97,12 @@ public class ThymeleafLoginSecurityApplication implements CommandLineRunner {
     	else
     	{
     		System.out.println("user is null save new user");
-    	}
+    	}*/
     	//User u = new User("Martin", "password1234");
     	//u.setUsername("Martin");
     	//u.setPassword("password1234");
     //	user.create(u);
-    	System.out.println(obj.findAll().toString());
+    //	System.out.println(obj.findAll().toString());
     //	System.out.println(obj.getObjects().toString());
     	//userRepo.add("larkin", "password1234");
     }

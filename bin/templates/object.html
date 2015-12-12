@@ -1,32 +1,115 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" >
-		
-	 <head>
-    <title>Detailed Object ID</title>
-  </head>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+	<style>
+	#header {
+		background-color:#005580;
+		text-shadow: 1px 1px #ffffcc; 
+		color:white;
+		text-align:center;
+		padding:5px;
+	}
+	
+	#nav {
+		background-color:#0077b7;
+		font-style: italic;
+		font-style: bold;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		
+	}
+	
+	#body {
+		float:left;
+		padding:10px;		 
+	}
+	
+	#footer {
+		background-color:#005580;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		 
+	}
+	</style>
+	
+	<title>Cooper Hewitt Museum</title>
+	
+</head>
   
-  <body>
-  
-  	
-  	<p> 
-        <div th:text="${object.id}"/>
-         
-         <div th:text="${object.title}"/>
-         <div th:text="${object.date}"/>
-         <div th:text="${object.creditline}"/>
-         <div th:text="${object.description}"/>
-         <div th:text="${object.gallery_text}"/>
-         <div th:text="${object.medium}"/>
-         
+ <body>
 
-         
-         
-         </p>
-  </body>
-		
+	<table width="100%" border="0">
+		<tr>
+			<td>
+				<div id="header">
+					<form th:action="@{/logout}" method="post" style="float:right">
+						<input type="submit" value="Sign Out"/>
+					</form>
+					<center>
+						<h1>Detailed Object ID</h1>
+					</center>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="nav">
+					<center>
+						<p> <a th:href="@{/home}">HOME</a></p>
+						<p> <a th:href="@{/gallery}">EXHIBITS</a></p>
+						<p> <a th:href="@{/user}">USER PROFILE</a></p>
+					</center>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="body">
+					<div th:text="${object.id}"/>
+					<div th:text="${object.title}"/>
+					<div th:text="${object.date}"/>
+					<div th:text="${object.creditline}"/>
+					<div th:text="${object.description}"/>
+					<div th:text="${object.gallery_text}"/>
+					<div th:text="${object.medium}"/>
 
+					<h4>Like amount: </h4>
+         <div th:text="${like.amount}"/>
+         
+         <form action="#" th:action="@{|/object/${object.object_id}/like|}" th:object="${object}" method="get">
+         <button type="submit" name="action" value="like">Like</button>
+			</form>
+			
+			<form action="#" th:object="${comment}" method='post' th:action="@{|/object/${object.object_id}/comment|}"> 
+			 Comment:<br />
+  				<input type="text" th:field="*{comment}" />
+
+
+  				<input type='submit' value='Submit' />  
+			
+			</form>
+			
+			 <p th:text="'Author: ' + ${comment.author}" />
+    	<p th:text="'Comment: ' + ${comment.comment}" />
+					
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="footer">
+					<center>
+						Group Project 
+					</center>
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+
+</body>
 
 
 

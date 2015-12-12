@@ -39,6 +39,17 @@ public class ChObject {
 	@Column
 	private String medium;
 
+	private int likes;
+
+	public int getLikes() {
+		return likes;
+	}
+
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
 
 	@Override
 	public String toString() {

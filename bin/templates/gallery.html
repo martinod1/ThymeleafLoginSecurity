@@ -1,30 +1,91 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>Hello World!</title>
-    </head>
-    <body>
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-        
-        <p>Click <a th:href="@{/object}">here</a> to view specific object info</p>
-        
-        
-        <p th:each="object : ${objects}">
-        <h4>Object ID:</h4>
-        <div ><p> <a th:text="${object.object_id}" th:href="@{|/object/${object.object_id}|}"> </a></p> </div>
-		<h4>Title:</h4>
-		<div th:text="${object.title}"></div>
-		<h4>Content:</h4>
-		<div th:text="${object.date}"></div>
-		<div>---------------------------------------------------------</div>
-        </p>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+	<style>
+	#header {
+		background-color:#005580;
+		text-shadow: 1px 1px #ffffcc; 
+		color:white;
+		text-align:center;
+		padding:5px;
+	}
+	
+	#nav {
+		background-color:#0077b7;
+		font-style: italic;
+		font-style: bold;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		
+	}
+	
+	#body {
+		padding:10px;		 
+	}
+	
+	#footer {
+		background-color:#005580;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		 
+	}
+	</style>
+	
+	<title>Cooper Hewitt Museum</title>
+	
+</head>
+ <body>
 
-        
-        
-       
-    </body>
+	<table width="100%" border="0">
+		<tr>
+			<td>
+				<div id="header">
+					<form th:action="@{/logout}" method="post" style="float:right">
+						<input type="submit" value="Sign Out"/>
+					</form>
+					<center>
+						<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+					</center>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="nav">
+					<center>
+						<p> <a th:href="@{/home}">HOME</a></p>
+						<p> <a th:href="@{/gallery}">EXHIBITS</a></p>
+						<p> <a th:href="@{/user}">USER PROFILE</a></p>
+					</center>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="body">			
+					<p th:each="object : ${objects}">
+						<h4>Object ID:</h4>
+						<div ><p> <a th:text="${object.object_id}" th:href="@{|/object/${object.object_id}|}"> </a></p> </div>
+						<h4>Title:</h4>
+						<div th:text="${object.title}"></div>
+						<h4>Content:</h4>
+						<div th:text="${object.date}"></div>
+					</p>	
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="footer">
+					<center>
+						Group Project 
+					</center>
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+</body>
 </html>

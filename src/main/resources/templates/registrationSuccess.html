@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+
+<title>Succesful Registration!</title>
+</head>
+<body>
+
+	<p>
+		<h2>Congratulations, you have been succesfully been registered!</h2>
+		<h2>Username: </h2>
+	      <div th:text="${user.username}"/>  
+         <h2>Password: </h2><div th:text="${user.password}"/>
+        <h2>Role: </h2> <div th:text="${user.role}"/>
+         
+         
+	</p>
+	
+	  <p>Click <a th:href="@{/home}">here</a> to return to the home page!</p>
+	
+	
+</body>
+</html>
