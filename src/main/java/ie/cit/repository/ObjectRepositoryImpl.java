@@ -57,7 +57,7 @@ public class ObjectRepositoryImpl implements ObjectRepository {
 
 		List<ChObject> objects = session.createCriteria(ChObject.class).list();;
 		//session.getTransaction().commit();
-		//session.close();
+		session.close();
 	
 	return objects;
 	}
@@ -71,7 +71,7 @@ public class ObjectRepositoryImpl implements ObjectRepository {
 
 		ChObject object= (ChObject) session.get(ChObject.class, id);
 		//session.getTransaction().commit();
-		//session.close();
+		session.close();
 	
 	return object;
 	}
@@ -81,6 +81,8 @@ public class ObjectRepositoryImpl implements ObjectRepository {
 		
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Image> images = (List<Image>) session.get(Image.class, object_id);
+        session.close();
+
 		return images;
 	}
 

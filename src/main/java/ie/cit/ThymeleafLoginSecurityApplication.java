@@ -19,6 +19,7 @@ import com.mongodb.MongoException;
 
 import ie.cit.domain.Image;
 import ie.cit.domain.UserDet;
+import ie.cit.repository.ImageRepository;
 import ie.cit.repository.ObjectRepository;
 import ie.cit.repository.UserRepository;
 import ie.cit.service.ObjectService;
@@ -39,6 +40,9 @@ public class ThymeleafLoginSecurityApplication implements CommandLineRunner {
 	//ObjectService obj;
 
 	ObjectRepository obj = context.getBean(ObjectRepository.class);
+	
+	ImageRepository img = context.getBean(ImageRepository.class);
+
 	
 	//UserService user = context.getBean(UserService.class);
 	
@@ -64,7 +68,8 @@ public class ThymeleafLoginSecurityApplication implements CommandLineRunner {
     
     public void addUser() {
     	System.out.println("in add user");
-    	
+      //  System.out.println(img.findAll().toString());
+
     	//List<Image> images = obj.findAllImagesByObjectID("68240611");
     	//System.out.println(images.toString());
     	

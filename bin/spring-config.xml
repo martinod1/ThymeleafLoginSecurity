@@ -18,20 +18,6 @@
 ">
 
 
-	<!-- Redis Connection Factory 
-	<bean id="jedisConnFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-			 p:host-name="localhost" p:port="6379" p:password="" p:use-pool="true" />--> 
-					
-	<!-- Redis String Serialiser		
-	<bean 
-    id="stringRedisSerializer" 
-    class="org.springframework.data.redis.serializer.StringRedisSerializer"/> -->
-    
- 	<!-- Redis Template Configuration
-	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
-			p:connection-factory-ref="jedisConnFactory"
-			p:defaultSerializer-ref="stringRedisSerializer"
-   			 /> -->
 
   			 
    	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
@@ -48,11 +34,14 @@
         <property name="annotatedClasses">
             <list>
                 <value>ie.cit.domain.ChObject</value> 
+                <value>ie.cit.domain.Comment</value> 
+                <value>ie.cit.domain.Like</value> 
+                <value>ie.cit.domain.Image</value> 
+                
+                
             </list>
         </property>
-       <!--   <property name="configLocation">
-            <value>classpath:hibernate.cfg.xml</value>
-        </property> -->
+      
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -72,6 +61,10 @@
 <mongo:db-factory dbname="adf" mongo-ref="mongo" id="mongoDbFactory" />
         
         <bean id="ObjectRepository" class="ie.cit.repository.ObjectRepositoryImpl">
+		<property name="sessionFactory" ref="SessionFactory" />
+		</bean>
+		
+		<bean id="ImageRepository" class="ie.cit.repository.ImageRepositoryImpl">
 		<property name="sessionFactory" ref="SessionFactory" />
 		</bean>
 	

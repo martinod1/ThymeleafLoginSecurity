@@ -16,6 +16,10 @@ public class Comment {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+	
+	public Comment() {
+		super();
+	}
 	@Override
 	public String toString() {
 		return "Comment [comment=" + comment + ", author=" + author + "]";

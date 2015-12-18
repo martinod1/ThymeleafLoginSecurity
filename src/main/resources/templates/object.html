@@ -75,24 +75,37 @@
 					<div th:text="${object.gallery_text}"/>
 					<div th:text="${object.medium}"/>
 
+				<img th:attr=" src=@{${image.url}}"/>
+
 					<h4>Like amount: </h4>
          <div th:text="${like.amount}"/>
          
          <form action="#" th:action="@{|/object/${object.object_id}/like|}" th:object="${object}" method="get">
-         <button type="submit" name="action" value="like">Like</button>
+         <input type="submit" src="http://www.employmentlawebuzz.com/files/2013/10/main-thumb-t-8762-50-xjPOswuVFn5ZplI8yJx4s1Zii1rnCXiS.jpeg" name="action" value="like"></input>
 			</form>
 			
-			<form action="#" th:object="${comment}" method='post' th:action="@{|/object/${object.object_id}/comment|}"> 
-			 Comment:<br />
-  				<input type="text" th:field="*{comment}" />
-
+			
+<!-- 			<input type="image"  id="like" src="http://www.employmentlawebuzz.com/files/2013/10/main-thumb-t-8762-50-xjPOswuVFn5ZplI8yJx4s1Zii1rnCXiS.jpeg" alt="Submit Form" />
+ -->			
+			 <form action="#" th:object="${comment}" method='post' th:action="@{|/object/${object.object_id}/comment|}"> 
+			 Comment:<br/>
+  				<input type="text" autocomplete="off" th:field="*{comment}" />
+ 
 
   				<input type='submit' value='Submit' />  
 			
-			</form>
+			 </form> 
+				<h4> Comments:</h4>
+			    	<p th:each="comment : ${comments}">
+					
+						 <p th:text="'Author: ' + ${comment.author}" />
+    					<p th:text="'Comment: ' + ${comment.comment}" /> 
+    					
+					  </p>    
+					
+			<!-- 	<img th:src="${image.url}" /> -->
 			
-			 <p th:text="'Author: ' + ${comment.author}" />
-    	<p th:text="'Comment: ' + ${comment.comment}" />
+			
 					
 				</div>
 			</td>

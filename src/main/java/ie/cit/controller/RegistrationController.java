@@ -1,5 +1,7 @@
 package ie.cit.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +32,10 @@ public class RegistrationController {
 		}
 		else
 		{
+			ArrayList<String> badges = new ArrayList();
 			user.setRole("USER");
+			user.setPoints(0);
+			user.badges=badges;
 			userService.insert(user);
 			model.addAttribute("user", user);
 			return("registrationSuccess");

@@ -1,0 +1,103 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+	<style>
+	#header {
+		background-color:#005580;
+		text-shadow: 1px 1px #ffffcc; 
+		color:white;
+		text-align:center;
+		padding:5px;
+	}
+	
+	#nav {
+		background-color:#0077b7;
+		font-style: italic;
+		font-style: bold;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		
+	}
+	
+	#body {
+		float:left;
+		padding:10px;		 
+	}
+	
+	#footer {
+		background-color:#005580;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		 
+	}
+	
+	</style>
+	
+	<title>Cooper Hewitt Museum</title>
+	
+</head>
+   <body>
+
+	<table width="100%" border="0">
+		<tr>
+			<td>
+				<div id="header">
+					<form th:action="@{/logout}" method="post" style="float:right">
+						<input type="submit" value="Sign Out"/>
+					</form>
+					<center>
+						<h1>Welcome to Cooper Hewitt Museum Website!!</h1>
+					</center>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="nav">
+					<center>
+						<p> <a th:href="@{/home}">HOME</a> <a th:href="@{/gallery}">EXHIBITS</a> <a th:href="@{/user}">USER PROFILE</a></p>
+						<p> </p>
+						<p> </p>
+					</center>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="body">
+					
+					<p>Show username</p>
+					
+						<div th:text="${user.username}"></div>
+					
+						<p>Points</p>
+
+						<div th:text="${user.points}"></div>
+
+						<p th:each="badge : ${user.badges}">
+							
+						
+						<img th:attr=" src=@{${badge}}"/>
+    					  </p>    
+					
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="footer">
+					<center>
+						Group Project 
+					</center>
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+
+</body>
+</html>

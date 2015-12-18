@@ -1,5 +1,6 @@
 package ie.cit.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Id;
@@ -10,21 +11,24 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection="likes")
 public class Like {
 	
-	@Field("_id")
+	
 	@Id
 	private Integer _id;
 	
 	private Integer amount;
 	
-	private List<Comment> comments;
+	private  ArrayList<Comment> comments;
 	
-	public List<Comment> getComments() {
+
+	public ArrayList<Comment> getComments() {
 		return comments;
 	}
 
-	public void setComments(List<Comment> comments) {
+
+	public void setComments(ArrayList<Comment> comments) {
 		this.comments = comments;
 	}
+
 
 	public void setAmount(Integer amount) {
 		this.amount = amount;

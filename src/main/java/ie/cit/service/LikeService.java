@@ -6,6 +6,6 @@ public interface LikeService {
 	
 	Like createLike(Like like);
 	Like updateLike(Integer objectid);
-	
+	Like updateContents(Like like);
 
 }

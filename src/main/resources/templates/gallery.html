@@ -55,24 +55,33 @@
 			<td>
 				<div id="nav">
 					<center>
-						<p> <a th:href="@{/home}">HOME</a></p>
-						<p> <a th:href="@{/gallery}">EXHIBITS</a></p>
-						<p> <a th:href="@{/user}">USER PROFILE</a></p>
+						<p> <a th:href="@{/home}">HOME</a>  <a th:href="@{/gallery}">EXHIBITS</a> <a th:href="@{/user}">USER PROFILE</a></p>
+						<p></p>
+						<p> </p>
 					</center>
 				</div>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<div id="body">			
-					<p th:each="object : ${objects}">
-						<h4>Object ID:</h4>
-						<div ><p> <a th:text="${object.object_id}" th:href="@{|/object/${object.object_id}|}"> </a></p> </div>
-						<h4>Title:</h4>
-						<div th:text="${object.title}"></div>
-						<h4>Content:</h4>
-						<div th:text="${object.date}"></div>
-					</p>	
+				<div>		  
+			  	
+<table id="tableObject">
+			      <tr>
+					<th></th>
+			      </tr>
+			      <tr id="row">			      
+			        <th id="id">Object ID:</th>
+			        <th id="Title">Title:</th>
+			        <th id="content">Content:</th>
+			      </tr>
+			      <tr  id="row" th:each="object : ${objects}">			     
+			        <th id="thObject"> <a th:text="${object.object_id}" th:href="@{|/object/${object.object_id}|}"> </a> </th>
+			        <th id="thObject" th:text="${object.title}"></th>
+			        <th id="thObject" th:text="${object.creditline}"></th>
+			        <th id="thObject" th:text="${object.date}"></th>
+			      </tr>
+			  	</table>
 				</div>
 			</td>
 		</tr>
@@ -88,4 +97,36 @@
 	</table>
 	
 </body>
+<style>
+#tableObject {
+    width: 100%;
+}
+#id {
+    width: 25%;
+    border-bottom: 1px solid #ddd;
+}
+#Title {
+    width: 25%;
+    border-bottom: 1px solid #ddd;
+}
+#content {
+    width: 50%;
+    border-bottom: 1px solid #ddd;
+}
+#thObject, content, idTitle {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#row:hover{background-color:#f5f5f5}
+
+
+#footer {
+  
+   bottom:0;
+   width:100%;
+   height:60px;
+}
+</style>
 </html>

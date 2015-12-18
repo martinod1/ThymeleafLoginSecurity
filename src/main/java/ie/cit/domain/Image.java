@@ -11,7 +11,7 @@ public class Image {
 
 	@Id
 	@Column
-	private Integer id;
+	private Long id;
 	@Column
 	private String url;
 	@Column
@@ -26,10 +26,10 @@ public class Image {
 	private Integer object_id;
 	@Column
 	private String keyVal;
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getUrl() {
@@ -73,6 +73,11 @@ public class Image {
 	}
 	public void setKeyVal(String keyVal) {
 		this.keyVal = keyVal;
+	}
+	@Override
+	public String toString() {
+		return "Image [id=" + id + ", url=" + url + ", width=" + width + ", height=" + height + ", is_primary="
+				+ is_primary + ", image_id=" + image_id + ", object_id=" + object_id + ", keyVal=" + keyVal + "]";
 	}
 	
 	

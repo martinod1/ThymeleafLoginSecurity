@@ -1,5 +1,6 @@
 package ie.cit.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Id;
@@ -22,11 +23,32 @@ public class UserDet {
    
     private String password;
 
-   
-	   public String role;
+	public String role;
+	
+	public Integer points;
+	
+	public ArrayList<String> badges;
+	
+	
 	   
 
-    public String getId() {
+    public ArrayList<String> getBadges() {
+		return badges;
+	}
+
+	public void setBadges(ArrayList<String> badges) {
+		this.badges = badges;
+	}
+
+	public Integer getPoints() {
+		return points;
+	}
+
+	public void setPoints(Integer points) {
+		this.points = points;
+	}
+
+	public String getId() {
 		return id;
 	}
 
@@ -60,8 +82,11 @@ public class UserDet {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", roles=" + role + "]";
+		return "UserDet [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role
+				+ ", points=" + points + ", badges=" + badges + "]";
 	}
+
+	
 
 	
 	

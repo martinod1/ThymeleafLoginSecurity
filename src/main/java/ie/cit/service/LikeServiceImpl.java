@@ -15,41 +15,47 @@ public class LikeServiceImpl implements LikeService {
 	
 	@Autowired
 	private LikeRepository like;
-
 	
+	@Autowired
+	private UserServiceImpl userService;
+
+	@Override
 	public Like createLike(Like like1) {
 		System.out.println("within createLike");
 		return like.insert(like1);
 	}
 
-	
+	@Override
 	public Like updateLike(Integer objectid) {
 		Like l = like.findOne(objectid);
-		//Like l = like.findByObjectid(objectid);
 		int amount = l.getAmount();
 		amount++;
 		l.setAmount(amount);
-		System.out.println(l.toString());
 		l.set_id(objectid);
-		like.delete(l);
-		//like.delete(objectid);
-		//like.delete(l);
-		like.insert(l);
+		System.out.println(l.toString());
+		userService.findByUsername("james");
 		
-		/*Like u = like.save(l);
-		System.out.println(u.toString() + " gfsf");*/
-		//like.insert(l);
-		/*ArrayList<Like> entites = new ArrayList();
-		entites.add(l);
-		Iterator<Like>likes = entites.listIterator(0);
-		//like.sa
-		like.save(l);*/
-		//like.save
-		//like.save(l);
-		//like.save(l);
+		//like.delete(objectid);
+		//l.set_id(32453678);
+		like.save(l);
+	
 		return l;
 	}
 
+	@Override
+	public Like updateContents(Like newLike) {
+		//Like oldLike = like.findOne(newLike.get_id());
+		//Integer id = newLike.get_id();
+		//System.out.println(newLike.toString());
+		//System.out.println(id);
+		//like.delete(id);
+		//like.delete(id);
+		//System.out.println(id + " -----");
+
+		return like.save(newLike);
+	}
+
+	
 	
 
 }

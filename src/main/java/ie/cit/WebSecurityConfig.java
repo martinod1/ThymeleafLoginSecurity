@@ -41,7 +41,7 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .inMemoryAuthentication()
-                .withUser("user").password("pw").roles("USER");
+                .withUser("martin").password("pw").roles("USER");
         
       //  auth.authenticationProvider(authenticationProvider);
         

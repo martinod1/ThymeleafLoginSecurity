@@ -1,4 +1,4 @@
-package ie.cit;
+package ie.cit.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +23,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import ie.cit.domain.ChObject;
 import ie.cit.domain.UserDet;
+import ie.cit.repository.ImageRepository;
 import ie.cit.repository.ObjectRepository;
 import ie.cit.repository.UserRepository;
 import ie.cit.service.ObjectService;
@@ -46,6 +47,7 @@ public class MainController {
 	ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 	
 	ObjectRepository obj = context.getBean(ObjectRepository.class);
+	ImageRepository img = context.getBean(ImageRepository.class);
 	//UserRepository user = context.getBean(UserRepository.class);
 	//UserRedisRepository userRepo = (UserRedisRepository)context.getBean("userRepo");
 	
@@ -60,39 +62,16 @@ public class MainController {
 		model.addAttribute("objects", obj.findAll());
 		return("home");
 	}
-/*	//@Secured({"ROLE_USER"})
-	@RequestMapping(value = "/gallery", method=RequestMethod.GET)
-	public Map<String, Object> showObjects(@AuthenticationPrincipal UserDetails userDetails)
-	{
-		UserDet user =users.findOne("{#:#}", UserDet.USERNAME, userDetails.getUsername()).as(UserDet.class);
-		 Map<String, Object> model = new HashMap<>();
-	      model.put("roles", user.getRoles());
-		((Model) model).addAttribute("objects", obj.findAll());
-		return model;
-	}*/
+
 	@RequestMapping(value = "/gallery", method=RequestMethod.GET)
 	public String showObjects(Model model)
 	{
+		Long id = (long) 68250611;
 		model.addAttribute("objects", obj.findAll());
+		model.addAttribute("images", img.findByObjectID(id));
 		return("gallery");
 	}
 
-	
-	
-	/*@RequestMapping(value="/object", method=RequestMethod.GET)
-	public String object() {
-		return "object";
-	}*/
-	/*public ModelAndView index() {
-	//	String userName = userRepo.get("martin");
-		ModelAndView modelAndView = new ModelAndView("hello");
-		List<ChObject> objList = obj.findAll();
-
-		modelAndView.addObject(objList);
-
-
-		return modelAndView;
-	}*/
 	 // Login form
 	  @RequestMapping(value="/login", method= RequestMethod.GET)
 	  public String login() {
