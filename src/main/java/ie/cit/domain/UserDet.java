@@ -20,7 +20,6 @@ public class UserDet {
 	
     private String username;
 
-   
     private String password;
 
 	public String role;
@@ -29,10 +28,28 @@ public class UserDet {
 	
 	public ArrayList<String> badges;
 	
+	public ArrayList<String> likes;
 	
-	   
+	public ArrayList<UserComment> comments;
+	
+	
+	public ArrayList<UserComment> getComments() {
+		return comments;
+	}
 
-    public ArrayList<String> getBadges() {
+	public void setComments(ArrayList<UserComment> comments) {
+		this.comments = comments;
+	}
+
+    public ArrayList<String> getLikes() {
+		return likes;
+	}
+
+	public void setLikes(ArrayList<String> likes) {
+		this.likes = likes;
+	}
+
+	public ArrayList<String> getBadges() {
 		return badges;
 	}
 
@@ -83,8 +100,11 @@ public class UserDet {
 	@Override
 	public String toString() {
 		return "UserDet [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role
-				+ ", points=" + points + ", badges=" + badges + "]";
+				+ ", points=" + points + ", badges=" + badges + ", likes=" + likes + ", comments=" + comments + "]";
 	}
+
+	
+	
 
 	
 

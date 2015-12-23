@@ -7,5 +7,7 @@
     <session-factory>
         <mapping class="ie.cit.repositoty.ObjectRepositoryImpl" />
     </session-factory>
+    
+   
 
 </hibernate-configuration>

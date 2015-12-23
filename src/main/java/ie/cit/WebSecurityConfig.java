@@ -13,15 +13,11 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
 @Configuration
 @EnableWebMvcSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
-/*@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-*/public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	/*@Autowired
-	private MongoDBAuthenticationProvider authenticationProvider;
-	*/
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-        //.antMatchers("/gallery").hasRole("USER")
 
 		 http
          .authorizeRequests()
@@ -43,7 +39,6 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
             .inMemoryAuthentication()
                 .withUser("martin").password("pw").roles("USER");
         
-      //  auth.authenticationProvider(authenticationProvider);
         
         
     }

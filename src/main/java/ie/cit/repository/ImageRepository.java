@@ -9,8 +9,6 @@ import ie.cit.domain.Image;
 public interface ImageRepository {
 	
 	List<Image> findAll();
-	Image findById(Long id);
 	Image findByObjectID(Long object_id);
-	//Image findByObjectID(Long object_id);
 
 }

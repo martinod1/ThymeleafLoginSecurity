@@ -21,6 +21,7 @@ public class UserController {
 	public String registrationForm(Model model) {
 		UserDet u = userService.findByUsername("martin");
 		model.addAttribute("user", u);
+		model.addAttribute("users", userService.findAllUsers());
 		return "user";
 	}
 

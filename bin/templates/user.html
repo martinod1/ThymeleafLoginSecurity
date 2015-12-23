@@ -1,94 +1,197 @@
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 	<style>
-	#header {
+		#header {
 		background-color:#005580;
-		text-shadow: 1px 1px #ffffcc; 
 		color:white;
 		text-align:center;
 		padding:5px;
-	}
+		}
+		
+		#nav {
+			background-color:#0077b7;
+			font-style: italic;
+			font-style: bold;
+			color:white;
+			clear:both;
+			text-align:center;
+			padding:5px;		
+		}
 	
-	#nav {
-		background-color:#0077b7;
-		font-style: italic;
-		font-style: bold;
-		color:white;
-		clear:both;
-		text-align:center;
-		padding:5px;		
-	}
-	
-	#body {
-		float:left;
-		padding:10px;		 
-	}
-	
-	#footer {
-		background-color:#005580;
-		color:white;
-		clear:both;
-		text-align:center;
-		padding:5px;		 
-	}
+		#footer {
+			background-color:#005580;
+			color:white;
+			text-align:center;	
+			position: fixed;
+			padding-top: 5px;
+			clear:both;
+			width: 100%;
+			bottom:0px;
+			z-index: 0;		
+		}
+			
+		#heading {
+			color:#005580;
+			text-align:center;
+			font-style: italic;
+			font-style: bold;
+			font-size: 28px;
+			font-family: fantasy;
+		}
+		
+ 		#tableObject {
+			width: 100%;
+		}
+		
+		#username {
+			width: 35%;
+			border-bottom: 1px solid #ddd;
+		}
+		
+		#points {
+			width: 35%;
+			border-bottom: 1px solid #ddd;
+		}
+		
+		#thObject, username, points {
+			padding: 15px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		} 
+
+		#row:hover{background-color:#f5f5f5}
 	
 	</style>
-	
 	<title>Cooper Hewitt Museum</title>
 	
 </head>
-   <body>
+<body>
 
 	<table width="100%" border="0">
 		<tr>
-			<td>
+			<td colspan="2" style="width:100%;">
 				<div id="header">
-					<form th:action="@{/logout}" method="post" style="float:right">
-						<input type="submit" value="Sign Out"/>
-					</form>
+					<div style="float:right; padding-top:35px;">
+						<form th:action="@{/logout}" method="post" style="float:right">
+							<input type="submit" value="Sign Out"/>
+						</form>
+					</div>
+					<div  class="imgContainer" style="float: left; padding-top:6px; padding-left:20px;">
+						<img src="https://s3-media3.fl.yelpcdn.com/buphoto/3CCF5dfwyS9LmMPqY7_3cQ/o.jpg" style="width:120px; height:70px;"/>
+					</div>
+					<div style="padding-right:140px;">
 					<center>
-						<h1>Welcome to Cooper Hewitt Museum Website!!</h1>
+						<h1 th:inline="text">[[${#httpServletRequest.remoteUser}]]'s Profile</h1>
 					</center>
+					</div>
 				</div>
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<div id="nav">
 					<center>
-						<p> <a th:href="@{/home}">HOME</a> <a th:href="@{/gallery}">EXHIBITS</a> <a th:href="@{/user}">USER PROFILE</a></p>
-						<p> </p>
-						<p> </p>
+						<a th:href="@{/gallery}"><b>EXHIBITS</b></a>
 					</center>
 				</div>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<div id="body">
-					
-					<p>Show username</p>
-					
-						<div th:text="${user.username}"></div>
-					
-						<p>Points</p>
-
-						<div th:text="${user.points}"></div>
-
-						<p th:each="badge : ${user.badges}">
-							
-						
-						<img th:attr=" src=@{${badge}}"/>
-    					  </p>    
-					
-				</div>
+				<table style="width:100px;">
+					<tr>
+						<td>
+							<p id="header"><b>Username: </b></p>
+							<div th:text="${user.username}"></div>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table style="width:100px;">
+					<tr>
+						<td>
+							<p id="header"><b>Points: </b></p>
+							<div th:text="${user.points}"></div>
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
 		<tr>
 			<td>
+				<div>		  
+					<table id="tableObject">
+						<tr>
+							<th></th>
+						</tr>
+						<tr id="row">			      
+							<th id="header"><i>Likes</i></th>
+							
+						</tr>
+							<tr id="row" th:each="like : ${user.likes}">			     
+							<th id="thObject"> <a th:text="${like}" th:href="@{|/object/${like}|}"></a> </th>
+						</tr>
+					</table>
+				</div>
+			</td>
+			<td>
+				<div>		  
+					<table id="tableObject">
+						<tr>
+							<th id="header">Comments</th>
+						</tr>
+						<tr id="row">			      
+							<th id="Title"><i>Object ID</i></th>
+							<th id="Titler"><i>Comment</i></th>
+						</tr>
+							<tr id="row" th:each="com : ${user.comments}">			     
+							<th id="thObject"> <a th:text="${com.object_id}" th:href="@{|/object/${com.object_id}|}">  </a> </th>
+							<th id="thObject" th:text="${com.comment}"> </th>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td  colspan="2" align="center">
+				<div id="heading">
+					<p><b>Leader Board</b></p>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<table id="tableObject">
+					<tr>
+					<th></th>
+					</tr>
+					<tr id="row">			      
+					<th id="username"><i>Username</i></th>
+					<th id="points"><i>Points</i></th>
+					</tr>
+					<tr id="row" th:each="u : ${users}">			     
+					<th id="thObject" th:text="${u.username}"> </th>
+					<th id="thObject" th:text="${u.points}"></th>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="padding-top:15px">
+				<div id="img" style="height:60px;">
+					<p th:each="badge : ${user.badges}">
+						<img th:attr=" src=@{${badge}}"/>
+					</p>    
+				</div>
+			</td>
+			<td>
+				<div style="width:100%"></div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
 				<div id="footer">
 					<center>
 						Group Project 
@@ -98,6 +201,5 @@
 		</tr>
 	</table>
 	
-
 </body>
 </html>

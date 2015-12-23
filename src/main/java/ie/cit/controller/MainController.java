@@ -30,16 +30,12 @@ import ie.cit.service.ObjectService;
 import ie.cit.service.UserService;
 import ie.cit.service.UserServiceImpl;
 
-//import ie.cit.repository.UserRedisRepository;
-
 
 @Controller
 @EnableWebMvc
 public class MainController {
 	
-	/* @Autowired
-	 private MongoCollection users;
-	'*/
+	
 	
 	@Autowired
 	UserServiceImpl userService;
@@ -48,8 +44,6 @@ public class MainController {
 	
 	ObjectRepository obj = context.getBean(ObjectRepository.class);
 	ImageRepository img = context.getBean(ImageRepository.class);
-	//UserRepository user = context.getBean(UserRepository.class);
-	//UserRedisRepository userRepo = (UserRedisRepository)context.getBean("userRepo");
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String index() {

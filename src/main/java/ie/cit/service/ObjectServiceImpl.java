@@ -20,22 +20,14 @@ import ie.cit.repository.ObjectRepositoryImpl;
 @Qualifier("ChObjectService")
 public class ObjectServiceImpl implements ObjectService {
 	
-
-	//private SessionFactory sessionFactory;
 	
 	//@Autowired
 	private ObjectRepository objRepo;
 
 
-  /*  public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }*/
-
-
-
 	@Override
 	public List<ChObject> getObjects() {
-		// TODO Auto-generated method stub
+		
 		return objRepo.findAll();	}
 
 	

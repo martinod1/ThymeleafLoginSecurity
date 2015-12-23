@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+    
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans.xsd
+	 http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/data/mongo 
+	http://www.springframework.org/schema/data/mongo/spring-mongo-1.5.xsd
+">
+
+
+
+  			 
+    	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+        destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/adf" />
+        <property name="username" value="root" />
+        <property name="password" value="root" />
+    </bean> 
+   
+      <!--  	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+        destroy-method="close">
+        <property name="driverClassName" value="com.ibm.db2.jcc.DB2Driver" />
+        <property name="url" value="jdbc:db2://5.10.125.192:50001/SQLDB" />
+        <property name="username" value="robert.field@mycit.ie" />
+        <property name="password" value="Group1234" />
+    </bean> -->
+    
+   	
+	<bean id="SessionFactory" 
+		 class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		   <property name="dataSource" ref="dataSource" />
+        <property name="annotatedClasses">
+            <list>
+                <value>ie.cit.domain.ChObject</value> 
+                <value>ie.cit.domain.Comment</value> 
+                <value>ie.cit.domain.Like</value> 
+                <value>ie.cit.domain.Image</value> 
+                
+                
+            </list>
+        </property>
+      
+<!--                   <prop key="hibernate.dialect">org.hibernate.dialect.DB2Dialect</prop>
+ -->      
+      
+        <property name="hibernateProperties">
+            <props>
+            	 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+        </bean>
+        
+         
+<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+    <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+</bean>
+
+ <mongo:mongo host="localhost" port="27017" id="mongo" />
+ 
+<!-- <mongo:mongo host="candidate.59.mongolayer.com" port="10333" id="mongo" />
+ --><mongo:db-factory dbname="adf" mongo-ref="mongo" id="mongoDbFactory" />
+        
+        <bean id="ObjectRepository" class="ie.cit.repository.ObjectRepositoryImpl">
+		<property name="sessionFactory" ref="SessionFactory" />
+		</bean>
+		
+		<bean id="ImageRepository" class="ie.cit.repository.ImageRepositoryImpl">
+		<property name="sessionFactory" ref="SessionFactory" />
+		</bean>
+	
+	<bean id="UserService" class="ie.cit.service.UserServiceImpl" />
+	
+	<bean id="LikeService" class="ie.cit.service.LikeServiceImpl" />
+			
+	
+
+</beans>

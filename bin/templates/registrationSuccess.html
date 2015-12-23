@@ -1,25 +1,98 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
+	
+	<style>
+	#header {
+	background-color:#005580;
+	color:white;
+	text-align:center;
+	padding:5px;
+	}
+	
+	#nav {
+		background-color:#0077b7;
+		font-style: italic;
+		font-style: bold;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		
+	}
+	
+	#body {
+		padding-top: 40px; 
+		text-align: center;
+		vertical-align: middle;
+		border-color: #005580;
+		border-width: 2px;
+		border-style: solid;
+		border-top-right-radius: 10px;
+		border-top-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		border-bottom-left-radius: 10px;
+		width:350px; height:260px; border-color:#005580;		 
+	}
+	
+	#footer {
+		background-color:#005580;
+		color:white;
+		text-align:center;	
+		position: fixed;
+		padding-top: 5px;
+		clear:both;
+		width: 100%;
+		bottom:0px;
+		z-index: 0;		
+	}
+	
+	.center_cell_content{
+		text-align: center;
+	}
+	
+	</style>
+	<title>Registration Succesful!</title>
 
-<title>Succesful Registration!</title>
 </head>
 <body>
+	  
+	<table width="100%" border="0">
+		<tr>
+			<td>
+				<div id="header">
+					<div  class="imgContainer" style="float: left; padding-top:6px; padding-left:20px;">
+						<img src="https://s3-media3.fl.yelpcdn.com/buphoto/3CCF5dfwyS9LmMPqY7_3cQ/o.jpg" style="width:120px; height:70px;"/>
+					</div>
+					<div style="padding-right:140px;">
+						<h1>Congratulations, Registration Successful!</h1>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr align="center">
+			<td>
+				<div style="height:65px;"></div>
+				<div id="body">
+					<p>Username: </p><div th:text="${user.username}"/>  
+					<p>Password: </p><div th:text="${user.password}"/>
+					<p>Role: </p> <div th:text="${user.role}"/>
+				<p>Click <a th:href="@{/home}">here</a> to return to the Home Page!</p>
+					
+					<div style="height:30px;"></div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="footer">
+					<center>
+						Group Project 
+					</center>
+				</div>
+			</td>
+		</tr>
+	</table>
 
-	<p>
-		<h2>Congratulations, you have been succesfully been registered!</h2>
-		<h2>Username: </h2>
-	      <div th:text="${user.username}"/>  
-         <h2>Password: </h2><div th:text="${user.password}"/>
-        <h2>Role: </h2> <div th:text="${user.role}"/>
-         
-         
-	</p>
-	
-	  <p>Click <a th:href="@{/home}">here</a> to return to the home page!</p>
-	
-	
 </body>
 </html>

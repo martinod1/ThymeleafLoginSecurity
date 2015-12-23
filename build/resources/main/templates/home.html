@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+	<style>
+	#header {
+		background-color:#005580;
+		text-shadow: 1px 1px #ffffcc; 
+		color:white;
+		text-align:center;
+		padding:5px;
+	}
+	
+	#nav {
+		background-color:#0077b7;
+		font-style: italic;
+		font-style: bold;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		
+	}
+	
+	#body {
+		float:left;
+		padding:10px;		 
+	}
+	#image {
+		float: center;
+		height: 250px;
+		
+	}
+	
+	#footer {
+		background-color:#005580;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		 
+	}
+	.hot-container p { margin-top: 10px; }
+a { text-decoration: none; margin: 0 10px; }
+
+.hot-container {
+	min-height: 100px;
+	margin-top: 100px;
+	width: 100%;
+	text-align: center;
+}
+
+a.btn {
+	display: inline-block;
+	color: #666;
+	background-color: #eee;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 12px;
+	padding: 10px 30px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-bottom-width: 3px;
+}
+
+	a.btn:hover {
+		background-color: #e3e3e3;
+		border-color: rgba(0,0,0,0.5);
+	}
+	
+	a.btn:active {
+		background-color: #CCC;
+		border-color: rgba(0,0,0,0.9);
+	}
+	
+	
+/* blue button */
+
+a.btn.btn-blue {
+	background-color: #699DB6;
+	border-color: rgba(0,0,0,0.3);
+	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+	color: #FFF;
+}
+
+	a.btn.btn-blue:hover {
+		background-color: #4F87A2;
+		border-color: rgba(0,0,0,0.5);
+	}
+	
+	a.btn.btn-blue:active {
+		background-color: #3C677B;
+		border-color: rgba(0,0,0,0.9);
+	}
+
+/* red button */
+
+	a.btn.btn-red {
+	background-color: #E48681;
+	border-color: rgba(0,0,0,0.3);
+	text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+	color: #FFF;
+}
+
+	a.btn.btn-red:hover {
+		background-color: #DA4F49;
+		border-color: rgba(0,0,0,0.5);
+	}
+	
+	a.btn.btn-red:active {
+		background-color: #B32C24;
+		border-color: rgba(0,0,0,0.9);
+	}
+	
+	
+	
+	
+	
+	</style>
+	
+	<title>Cooper Hewitt Museum</title>
+	
+</head>
+   <body>
+
+	<table width="100%" border="0">
+		<tr>
+			<td>
+				<div id="header">
+					<form th:action="@{/logout}" method="post" style="float:right">
+						<input type="submit" value="Sign Out"/>
+					</form>
+					<center>
+						<h1>Welcome to Cooper Hewitt Museum Website!</h1>
+					</center>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="nav">
+					<center>
+						<p>	<a th:href="@{/home}"><b>HOME</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a th:href="@{/gallery}"><b>EXHIBITS</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a th:href="@{/user}"><b>USER PROFILE</b></a>
+						</p>
+					</center>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="body">
+				
+				<div class="hot-container">
+			<p>
+				<a th:href="@{/gallery}" class="btn">View Exhibits</a>
+				<a th:href="@{/login}" class="btn btn-red">Login</a>
+				<a th:href="@{/registration}" class="btn btn-blue">Register</a>
+			</p>
+		</div>
+					
+				</div>
+				
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<div id="image">
+						<img src="https://s3-media3.fl.yelpcdn.com/buphoto/3CCF5dfwyS9LmMPqY7_3cQ/o.jpg" />
+				
+				
+				</div>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<div id="footer">
+					<center>
+						Group Project 
+					</center>
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+
+</body>
+</html>

@@ -17,16 +17,27 @@
 	http://www.springframework.org/schema/data/mongo/spring-mongo-1.5.xsd
 ">
 
-
-
-  			 
-   	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		<!-- properties for cloud -->
+	 <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+        destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://us-cdbr-iron-east-03.cleardb.net:3306/ad_2fb43247262663b" />
+        <property name="username" value="bf40cea3e6fa4e" />
+        <property name="password" value="88102ddb" />
+    </bean> 
+  			  
+  			<!--  properties for local running -->
+  			
+    	<!--   <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
         destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/adf" />
         <property name="username" value="root" />
         <property name="password" value="root" />
-    </bean>
+    </bean>    -->
+    
+    
+    
    	
 	<bean id="SessionFactory" 
 		 class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -41,24 +52,30 @@
                 
             </list>
         </property>
+        
+   
       
-        <property name="hibernateProperties">
+         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+            	 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.current_session_context_class">thread</prop>
                 <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
         </bean>
-        
          
+     <!--     
 <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
     <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
 </bean>
 
-<mongo:mongo host="localhost" port="27017" id="mongo" />
-<mongo:db-factory dbname="adf" mongo-ref="mongo" id="mongoDbFactory" />
+ <mongo:mongo host="localhost" port="27017" id="mongo" /> -->
+ 
+<!-- <mongo:mongo host="candidate.59.mongolayer.com" port="10333" id="mongo" />
+ -->
+ <!-- 
+ <mongo:db-factory dbname="adf" mongo-ref="mongo" id="mongoDbFactory" /> -->
         
         <bean id="ObjectRepository" class="ie.cit.repository.ObjectRepositoryImpl">
 		<property name="sessionFactory" ref="SessionFactory" />

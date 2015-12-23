@@ -8,7 +8,5 @@ import ie.cit.domain.ChObject;
 
 @Service
 public interface ObjectService {
-	
 	public List<ChObject> getObjects();
-
 }

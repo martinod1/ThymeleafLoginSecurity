@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import ie.cit.domain.UserComment;
 import ie.cit.domain.UserDet;
 import ie.cit.service.UserServiceImpl;
 
@@ -33,16 +34,20 @@ public class RegistrationController {
 		else
 		{
 			ArrayList<String> badges = new ArrayList();
+			ArrayList<String> likes = new ArrayList();
+			ArrayList<UserComment> comments = new ArrayList();
+
 			user.setRole("USER");
 			user.setPoints(0);
 			user.badges=badges;
+			user.likes=likes;
+			user.comments=comments;
 			userService.insert(user);
 			model.addAttribute("user", user);
 			return("registrationSuccess");
 		}
 		
 		
-		//return("registration");
 	}
 	@RequestMapping(value="/registration", method=RequestMethod.GET)
 	public String registrationForm(Model model) {

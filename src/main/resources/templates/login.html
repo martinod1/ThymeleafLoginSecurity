@@ -4,64 +4,93 @@
 	<style>
 	#header {
 		background-color:#005580;
-		text-shadow: 1px 1px #ffffcc; 
 		color:white;
 		text-align:center;
 		padding:5px;
 	}
 	
+	#nav {
+		background-color:#0077b7;
+		font-style: italic;
+		font-style: bold;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		
+	}
+	
 	#body {
-		padding:10px;		 
+		padding-top: 40px; 
+		text-align: center;
+		vertical-align: middle;
+		border-color: #005580;
+		border-width: 2px;
+		border-style: solid;
+		border-top-right-radius: 10px;
+		border-top-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		border-bottom-left-radius: 10px;
+		width:300px; height:250px; border-color:#005580;		 
 	}
 	
 	#footer {
 		background-color:#005580;
 		color:white;
+		text-align:center;	
+		position: fixed;
+		padding-top: 5px;
 		clear:both;
-		text-align:center;
-		padding:5px;		 
+		width: 100%;
+		bottom:0px;
+		z-index: 0;		
 	}
 	
 	.center_cell_content{
 		text-align: center;
 	}
-	
 	</style>
-	
 	<title>Cooper Hewitt Museum</title>
 	
 </head>
-   <body>
+<body>
 
 	<table width="100%" border="0">
 		<tr>
 			<td>
 				<div id="header">
-					<center>
+					<div  class="imgContainer" style="float: left; padding-top:6px; padding-left:20px;">
+						<img src="https://s3-media3.fl.yelpcdn.com/buphoto/3CCF5dfwyS9LmMPqY7_3cQ/o.jpg" style="width:120px; height:70px;"/>
+					</div>
+					<div style="padding-right:140px;">
 						<h1>Login</h1>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="nav">
+					<center>
+							<a th:href="@{/home}"><b>HOME</b></a>
 					</center>
 				</div>
 			</td>
 		</tr>
 		<tr align="center">
 			<td>
+				<div style="height:65px;"></div>
 				<div id="body">
-					<div th:if="${param.error}">
-						Invalid username and password.
+					<!-- <div th:if="${param.error}">
+						<p>Invalid Username & Password</p>
 					</div>
 					<div th:if="${param.logout}">
-						You have been logged out.
-					</div>
-					
-					
+						<p>You have been Logged Out</p>
+					</div> -->
 					<form th:action="@{/login}" method="post">
-						<div><label> User Name: <input type="text" name="username"/> </label></div>
-						
-						<div><label> Password:  <input type="password" name="password"/> </label></div>
-						
+						<div><p><label> Username: <input type="text" name="username"/> </label></p></div>
+						<div><p><label> Password:  <input type="password" name="password"/> </label></p></div>
 						<div><input type="submit" value="Sign In"/></div>
 					</form>
-					
 					<p>Click <a th:href="@{/registration}">here</a> to register as a new user!</p>
 				</div>
 			</td>

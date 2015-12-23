@@ -32,7 +32,7 @@ import ie.cit.service.UserServiceImpl;
 @SpringBootApplication
 public class ThymeleafLoginSecurityApplication implements CommandLineRunner {
 
-	ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
+	/*ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 	//UserRedisRepository userRepo = (UserRedisRepository)context.getBean("userRepo");
 	
 	//ObjectServiceImpl ch = (ObjectServiceImpl)context.getBean("ChObjectService");
@@ -53,7 +53,7 @@ public class ThymeleafLoginSecurityApplication implements CommandLineRunner {
 	
 
 	//ObjectRepository obj;
-	
+*/	
     public static void main(String[] args) {
         SpringApplication.run(ThymeleafLoginSecurityApplication.class, args);
     }
@@ -61,54 +61,9 @@ public class ThymeleafLoginSecurityApplication implements CommandLineRunner {
     @Override
     public void run(String ... arg0) throws Exception
     {
-    	    	addUser();
+    	    	
     	
     }
  
     
-    public void addUser() {
-    	System.out.println("in add user");
-      //  System.out.println(img.findAll().toString());
-
-    	//List<Image> images = obj.findAllImagesByObjectID("68240611");
-    	//System.out.println(images.toString());
-    	
-    /*	UserDet usr =new UserDet();
-    	usr.setId("rthybgvfr");
-    	usr.setPassword("passw");;
-    	usr.setRole("USER");
-    	usr.setUsername("myusername");
-    	simp.insert(usr);
-    	
-    	UserDet u = simp.findByUsername("martin");*/
-    	/*UserDet us = new UserDet();
-    	UserDet u1 = simp.findByUsername("user");
-    	if(u1!=null)
-    	{
-        	System.out.println(u1.toString());
-
-    	}
-    	else
-    	{
-    		System.out.println("user 1 is null");
-    	}
-    	UserDet u = user.findByUsername("user");
-    	*/
-    /*	if(u!=null)
-    	{
-        	System.out.println(u.toString());
-
-    	}
-    	else
-    	{
-    		System.out.println("user is null save new user");
-    	}*/
-    	//User u = new User("Martin", "password1234");
-    	//u.setUsername("Martin");
-    	//u.setPassword("password1234");
-    //	user.create(u);
-    //	System.out.println(obj.findAll().toString());
-    //	System.out.println(obj.getObjects().toString());
-    	//userRepo.add("larkin", "password1234");
-    }
 }

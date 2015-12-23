@@ -2,54 +2,101 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 	<style>
-	#header {
-		background-color:#005580;
-		text-shadow: 1px 1px #ffffcc; 
-		color:white;
-		text-align:center;
-		padding:5px;
-	}
+		#header {
+			background-color:#005580;
+			color:white;
+			text-align:center;
+			padding:5px;
+		}
+		
+		#nav {
+			background-color:#0077b7;
+			font-style: italic;
+			font-style: bold;
+			color:white;
+			clear:both;
+			text-align:center;
+			padding:5px;		
+		}
+		
+		#footer {
+			background-color:#005580;
+			color:white;
+			text-align:center;	
+			position: fixed;
+			padding-top: 5px;
+			clear:both;
+			width: 100%;
+			bottom:0px;
+			z-index: 0;		
+		}
+		
+		#body {
+			text-align: center;
+			padding:10px;		 
+		}
+		#text {
+			text-align:center;
+			font-family: fantasy;
+			font-size: 1.857em;
+		}
 	
-	#nav {
-		background-color:#0077b7;
-		font-style: italic;
-		font-style: bold;
-		color:white;
-		clear:both;
-		text-align:center;
-		padding:5px;		
-	}
+		#image {
+			 text-align:center;
+			padding-top:30px;
+			padding-left:35%;
+			padding-left:35%;
+			badding-bottom:30px;
+			}
+		#heading {
+			color:#005580;
+			font-style: italic;
+		}
+		#textarea {
+			text-align:center;
+			width:100%;
+		}
+		#tableObject {
+			text-align:center;
+			width:100%;
+			
+		}
+		
 	
-	#body {
-		float:left;
-		padding:10px;		 
-	}
+		#author {
+			width: 25%;
+			border-bottom: 1px solid #ddd;
+		}
+		
+		#comment {
+			width: 25%;
+			border-bottom: 1px solid #ddd;
+		}
+			#row:hover{background-color:#f5f5f5}
 	
-	#footer {
-		background-color:#005580;
-		color:white;
-		clear:both;
-		text-align:center;
-		padding:5px;		 
-	}
 	</style>
-	
 	<title>Cooper Hewitt Museum</title>
 	
 </head>
-  
  <body>
 
 	<table width="100%" border="0">
 		<tr>
 			<td>
 				<div id="header">
-					<form th:action="@{/logout}" method="post" style="float:right">
-						<input type="submit" value="Sign Out"/>
-					</form>
+					<div style="float:right; padding-top:35px;">
+						<form th:action="@{/logout}" method="post" style="float:right">
+							<input type="submit" value="Sign Out"/>
+						</form>
+					</div>
+					<div  class="imgContainer" style="float: left; padding-top:6px; padding-left:20px;">
+						<img src="https://s3-media3.fl.yelpcdn.com/buphoto/3CCF5dfwyS9LmMPqY7_3cQ/o.jpg" style="width:120px; height:70px;"/>
+					</div>
+					<div style="padding-right:140px;">
 					<center>
-						<h1>Detailed Object ID</h1>
+						<h1>Exhibit Information!</h1>
 					</center>
+					</div>
 				</div>
 			</td>
 		</tr>
@@ -57,9 +104,8 @@
 			<td>
 				<div id="nav">
 					<center>
-						<p> <a th:href="@{/home}">HOME</a></p>
-						<p> <a th:href="@{/gallery}">EXHIBITS</a></p>
-						<p> <a th:href="@{/user}">USER PROFILE</a></p>
+						<a th:href="@{/gallery}"><b>EXHIBITS</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a th:href="@{/user}"><b>USER PROFILE</b></a>
 					</center>
 				</div>
 			</td>
@@ -67,46 +113,58 @@
 		<tr>
 			<td>
 				<div id="body">
-					<div th:text="${object.id}"/>
-					<div th:text="${object.title}"/>
-					<div th:text="${object.date}"/>
-					<div th:text="${object.creditline}"/>
-					<div th:text="${object.description}"/>
-					<div th:text="${object.gallery_text}"/>
-					<div th:text="${object.medium}"/>
-
-				<img th:attr=" src=@{${image.url}}"/>
-
-					<h4>Like amount: </h4>
-         <div th:text="${like.amount}"/>
-         
-         <form action="#" th:action="@{|/object/${object.object_id}/like|}" th:object="${object}" method="get">
-         <input type="submit" src="http://www.employmentlawebuzz.com/files/2013/10/main-thumb-t-8762-50-xjPOswuVFn5ZplI8yJx4s1Zii1rnCXiS.jpeg" name="action" value="like"></input>
-			</form>
-			
-			
-<!-- 			<input type="image"  id="like" src="http://www.employmentlawebuzz.com/files/2013/10/main-thumb-t-8762-50-xjPOswuVFn5ZplI8yJx4s1Zii1rnCXiS.jpeg" alt="Submit Form" />
- -->			
-			 <form action="#" th:object="${comment}" method='post' th:action="@{|/object/${object.object_id}/comment|}"> 
-			 Comment:<br/>
-  				<input type="text" autocomplete="off" th:field="*{comment}" />
- 
-
-  				<input type='submit' value='Submit' />  
-			
-			 </form> 
-				<h4> Comments:</h4>
-			    	<p th:each="comment : ${comments}">
 					
-						 <p th:text="'Author: ' + ${comment.author}" />
-    					<p th:text="'Comment: ' + ${comment.comment}" /> 
-    					
-					  </p>    
+					<div id="textarea">
+					<div id="image" style="width:500px; vertical-align:middle; text-align:center">
+					<img th:attr=" src=@{${image.url}}" style="max-width:100%;"/>
+					</div>
+					<div id="text" style="text-align:center" >
+						<div th:text="${object.title}"/>
+						
+						<div th:text="${object.creditline}"/>
+						<div th:text="${object.description}"/>
+						
+						<div th:text="${object.medium}"/>
+					</div>
+					</div>
 					
-			<!-- 	<img th:src="${image.url}" /> -->
-			
-			
+					<div id="heading">
+						<p><b>Number of Likes</b></p>
+					</div>
+					<div th:text="${like.amount}"/>
+				 
+					<form action="#" th:action="@{|/object/${object.object_id}/like|}" th:object="${object}" method="get">
+						<input type="submit" style="background-color:#005580; color:white; font-weight: bold;" src="http://www.employmentlawebuzz.com/files/2013/10/main-thumb-t-8762-50-xjPOswuVFn5ZplI8yJx4s1Zii1rnCXiS.jpeg" name="action" value="Like"></input>
+					</form>
+				
+					<form action="#" th:object="${comment}" method='post' th:action="@{|/object/${object.object_id}/comment|}"> 
+						<div id="heading">
+							<p><b>Leave a Comment</b></p>
+						</div>
+						<input type="text" autocomplete="off" th:field="*{comment}" />
+						<input type='submit' value='Submit' />  
+					</form> 
 					
+					<div id="heading">
+						<p><b>Comments</b></p>
+					</div>
+					
+					<table id="tableObject">
+						<tr>
+							<th></th>
+						</tr>
+						<tr id="row">			      
+							<th id="id">Author:</th>
+							<th id="comment">Comment:</th>
+							
+						</tr>
+						<tr id="row" th:each="comment : ${comments}">	
+							<th id="thObject" th:text="${comment.author}" />
+							<th id="thObject" th:text="${comment.comment}" /> 
+						</tr> 
+					
+					</table>   
+				
 				</div>
 			</td>
 		</tr>
@@ -121,9 +179,5 @@
 		</tr>
 	</table>
 	
-
 </body>
-
-
-
 </html>

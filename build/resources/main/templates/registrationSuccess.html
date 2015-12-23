@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+  <style>
+	#header {
+		background-color:#005580;
+		text-shadow: 1px 1px #ffffcc; 
+		color:white;
+		text-align:center;
+		padding:5px;
+	}
+	
+	#body {
+		padding:10px;		 
+	}
+	
+	#footer {
+		background-color:#005580;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		 
+	}
+	
+	.center_cell_content{
+		text-align: center;
+	}
+	
+	</style>
+<head>
+
+<title>Successful Registration!</title>
+</head>
+<body>
+  
+<table width="100%" border="0">
+	<tr>
+		<td>
+			<div id="header">
+				<center>
+					<h1>Congratulations, Registration Successful!</h1>
+				</center>
+			</div>
+		</td>
+	</tr>
+	<tr align="center">
+		<td>
+			<div id="body">
+
+			<h3>Username: </h3>
+			<div th:text="${user.username}"/>  
+			<h3>Password: </h3><div th:text="${user.password}"/>
+			<h3>Role: </h3> <div th:text="${user.role}"/>
+	
+			<p>Click <a th:href="@{/home}">here</a> to return to the Home Page!</p>
+			
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div id="footer">
+				<center>
+					Group Project 
+				</center>
+			</div>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+	<style>
+	#header {
+		background-color:#005580;
+		text-shadow: 1px 1px #ffffcc; 
+		color:white;
+		text-align:center;
+		padding:5px;
+	}
+	
+	#body {
+		padding:10px;		 
+	}
+	
+	#footer {
+		background-color:#005580;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		 
+	}
+	
+	.center_cell_content{
+		text-align: center;
+	}
+	
+	</style>
+	
+	<title>Cooper Hewitt Museum</title>
+	
+</head>
+   <body>
+
+	<table width="100%" border="0">
+		<tr>
+			<td>
+				<div id="header">
+					<center>
+						<h1>Login</h1>
+					</center>
+				</div>
+			</td>
+		</tr>
+		<tr align="center">
+			<td>
+				<div id="body">
+					<div th:if="${param.error}">
+						Invalid username and password.
+					</div>
+					<div th:if="${param.logout}">
+						You have been logged out.
+					</div>
+					
+					
+					<form th:action="@{/login}" method="post">
+						<div><label> User Name: <input type="text" name="username"/> </label></div>
+						
+						<div><label> Password:  <input type="password" name="password"/> </label></div>
+						
+						<div><input type="submit" value="Sign In"/></div>
+					</form>
+					
+					<p>Click <a th:href="@{/registration}">here</a> to register as a new user!</p>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="footer">
+					<center>
+						Group Project 
+					</center>
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+</body>
+</html>

@@ -1,0 +1,10 @@
+---
+applications:
+- name: GroupProjectADF
+  memory: 512M
+  host: GroupProjectADF
+  domain: eu-gb.mybluemix.net
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
+  services:
+  - ClearDB
+  - MongoDB

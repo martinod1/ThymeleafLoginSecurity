@@ -1,0 +1,152 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+	<style>
+	#header {
+		background-color:#005580;
+		text-shadow: 1px 1px #ffffcc; 
+		color:white;
+		text-align:center;
+		padding:5px;
+	}
+	
+	#nav {
+		background-color:#0077b7;
+		font-style: italic;
+		font-style: bold;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		
+	}
+	
+	#body {
+		float:left;
+		padding:10px;		 
+	}
+	
+	#footer {
+		background-color:#005580;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;		 
+	}
+	#tableObject {
+		width: 100%;
+	}
+	
+	#username {
+		width: 35%;
+		border-bottom: 1px solid #ddd;
+	}
+	
+	#points {
+		width: 35%;
+		border-bottom: 1px solid #ddd;
+	}
+	
+	
+	#thObject, username, points {
+		padding: 15px;
+		text-align: left;
+		border-bottom: 1px solid #ddd;
+	}
+
+	#row:hover{background-color:#f5f5f5}
+	
+	</style>
+	
+	<title>Cooper Hewitt Museum</title>
+	
+</head>
+   <body>
+
+	<table width="100%" border="0">
+		<tr>
+			<td>
+				<div id="header">
+					<form th:action="@{/logout}" method="post" style="float:right">
+						<input type="submit" value="Sign Out"/>
+					</form>
+					<center>
+						<h1>Welcome to Cooper Hewitt Museum Website!!</h1>
+					</center>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="nav">
+					<center>
+						<p>	<a th:href="@{/home}"><b>HOME</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a th:href="@{/gallery}"><b>EXHIBITS</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a th:href="@{/user}"><b>USER PROFILE</b></a>
+						</p>
+					</center>
+				</div>
+			</td>
+		</tr>
+		
+		<table style="width:100%; padding-left:5%; padding-top:10px;">
+				<tr>
+					<td style="width:50%">
+						<div style="width:50%">
+							<b>Username: </b>
+							<div th:text="${user.username}"></div>
+							
+						</div>
+					</td>
+					<td style="width:50%">
+						<div style="width:50%">
+							<b>Points: </b>
+							<div th:text="${user.points}"></div>
+							
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="padding-top:15px;">
+						<div style="height:60px;">
+							 
+							<p th:each="badge : ${user.badges}">
+								<img th:attr=" src=@{${badge}}"/>
+							</p>    
+						</div>
+					</td>
+				</tr>
+			</table>
+			
+			<table id="tableObject">
+			      <tr>
+					<th></th>
+			      </tr>
+			      <tr id="row">			      
+			        <th id="username">Username:</th>
+			        <th id="points">Points:</th>
+			       <!--  <th id="level">Level:</th> -->
+			       
+			      </tr>
+			      <tr  id="row" th:each="u : ${users}">			     
+			        <th id="thObject" th:text="${u.username}"> </th>
+			        <th id="thObject" th:text="${u.points}"></th>
+			       
+			      </tr>
+			  	</table>
+		
+		<tr>
+			<td>
+				<div id="footer">
+					<center>
+						Group Project 
+					</center>
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+
+</body>
+</html>
